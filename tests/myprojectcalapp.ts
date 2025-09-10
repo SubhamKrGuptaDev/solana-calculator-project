@@ -62,7 +62,15 @@ describe('myprojectcalapp', () => {
     })
 
     // IMPLEMENT Division function
-
+    it('Multipication two numbers', async() => {
+        await program.rpc.div(new anchor.BN(4), new anchor.BN(2), {
+            accounts: {
+                calculator: calculator.publicKey
+            }
+        })
+        const account = await program.account.calculator.fetch(calculator.publicKey)
+        assert.ok(account.result.eq(new anchor.BN(2)))
+    })
 
 });
 

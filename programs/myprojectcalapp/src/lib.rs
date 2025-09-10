@@ -36,8 +36,18 @@ pub mod myprojectcalapp {
     }
 
     // IMPLEMENT Division function
+    pub fn div(ctx: Context<Division>, num1: i64, num2: i64) -> ProgramResult {
+        let calculator = &mut ctx.accounts.calculator;
+        calculator.result = num1 / num2;
+        Ok(())
+    }
 
+}
 
+#[derive(Accounts)]
+pub struct Division<'info> {
+    #[account(mut)]
+    pub calculator: Account<'info, Calculator>
 }
 
 #[derive(Accounts)]
